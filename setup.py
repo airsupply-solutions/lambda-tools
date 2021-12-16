@@ -7,10 +7,9 @@ from setuptools.command.test import test as TestCommand
 
 import lambda_tools
 
-requirements = pip.req.parse_requirements(
-    'requirements.txt', session=pip.download.PipSession(),
-)
-pip_requirements = [str(r.req) for r in requirements]
+requirements=[]
+with open("requirements.txt", "r", encoding="utf-8") as req:
+    requirements.append(req.readline())
 
 version = lambda_tools.VERSION
 
@@ -35,7 +34,7 @@ class PyTest(TestCommand):
 
 
 setup(
-    name='lambda-tools',
+    name='airsupply-lambda-tools',
     packages=['lambda_tools'],
     version=version,
     description='A toolkit for creating and deploying Python code to AWS Lambda',
@@ -44,7 +43,7 @@ setup(
     keywords=['aws-lambda', 'aws'],
     url='https://github.com/airsupply-solutions/air-supply',
     license='MIT',
-    install_requires=pip_requirements,
+    install_requires=requirements,
     zip_safe=False,
     classifiers=[
         'Development Status :: 3 - Alpha',
