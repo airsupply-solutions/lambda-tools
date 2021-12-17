@@ -9,7 +9,7 @@ import lambda_tools
 
 requirements=[]
 with open("requirements.txt", "r", encoding="utf-8") as req:
-    requirements.append(req.readline())
+    requirements = [requirement.strip() for requirement in req.readlines()]
 
 version = lambda_tools.VERSION
 
